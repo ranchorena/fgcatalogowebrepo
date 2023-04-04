@@ -16,7 +16,7 @@ pipeline {
                                     doGenerateSubmoduleConfigurations: false,
                                      extensions: [[$class: 'CleanCheckout']],
                                       submoduleCfg: [],
-                                      userRemoteConfigs: [[url: "https://${URLEncode("rancho@gsystems.com.ar")}:${URLEncode(ACCESS_TOKEN)}@bitbucket.org/geosystems_ar/fgcatalogofront.git",
+                                      userRemoteConfigs: [[url: "https://" + java.net.URLEncoder.encode("rancho@gsystems.com.ar", "UTF-8") + ":" + java.net.URLEncoder.encode(ACCESS_TOKEN, "UTF-8") + "@bitbucket.org/geosystems_ar/fgcatalogofront.git",
                                                            relativeTargetDir: 'CatalogoWeb']]
                                     ])
                         }
