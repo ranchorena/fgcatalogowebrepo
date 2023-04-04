@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 dir('C:\\Code\\CatalogoWeb') {
-                    withCredentials([string(credentialsId: 'RA_bitbucket', variable: 'ACCESS_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'Bitbucket_RAToken', variable: 'ACCESS_TOKEN')]) {
                          checkout([$class: 'GitSCM',
                                     branches: [[name: 'master']],
                                     doGenerateSubmoduleConfigurations: false,
