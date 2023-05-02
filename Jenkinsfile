@@ -23,7 +23,7 @@ pipeline {
                                     ])
                         }
                 }*/
-                git credentialsId: 'Bitbucker_user_pwd', url: 'https://bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
+                git credentialsId: 'Bitbucket_User_token', url: 'https://bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
             }
         }
         
