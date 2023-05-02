@@ -1,12 +1,12 @@
 pipeline {
     agent any
-    environment {
+    /*environment {
         //IIS_SERVER = '192.168.1.52'
         //IIS_SITE_NAME = 'web.fibergis'
         //IIS_USER = 'gystems\\Jenkins'
         //IIS_PASSWORD = ''
         //GITLAB_API_TOKEN = credentials('Bitbucker_user_pwd')
-    }    
+    }*/    
     stages {
         stage('Checkout') {
             steps {
