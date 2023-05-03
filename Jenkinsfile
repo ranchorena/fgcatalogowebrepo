@@ -22,7 +22,7 @@ pipeline {
                                                            relativeTargetDir: 'CatalogoWeb']]
                                     ])
                         }*/
-                    git url: 'https://x-token-auth:%FG_CATALOGO_BITBUCKET_TOKEN%@bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
+                    git url: 'https://x-token-auth:${env.FG_CATALOGO_BITBUCKET_TOKEN}@bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
                 }
             }
         }
