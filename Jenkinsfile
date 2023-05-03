@@ -26,7 +26,14 @@ pipeline {
                 }
             }
         }
-        
+        stage('Build') {
+            steps {
+                dir('C:\\Code\\CatalogoWeb') {
+                    bat 'npm install'
+                    bat 'npm run build -- --configuration production'
+                }
+            }
+        }        
 
     }   
 }
