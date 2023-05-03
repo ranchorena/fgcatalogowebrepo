@@ -23,7 +23,7 @@ pipeline {
                                     ])
                         }
                 }*/
-                git credentialsId: 'Bitbucket_User_token', url: 'https://bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
+                git url: 'https://x-token-auth:ATCTT3xFfGN06AZe4MFMPf8fN8H4LC0_yZb8vtED9eewtRsKS4x1rsitvD1nlzCTNdPXpkufArUfYZPSspjZyauF4jKGM1EqR4L_AmmH9ObmWAJzSzJR7ocVuak2SqxF7AYawIQGnnjBWjJnduwE1o4uHUerliAJYEBSiDP-tJpLWYu8vLRmWvQ=558B95DF@bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
             }
         }
         
