@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Print Vbles Entorno') {
             steps {
-                bat 'echo ${env.FG_CATALOGO_BITBUCKET_TOKEN}'
+                bat 'echo ${FG_CATALOGO_BITBUCKET_TOKEN}'
             }
         }
         stage('Checkout') {
@@ -27,7 +27,7 @@ pipeline {
                                                            relativeTargetDir: 'CatalogoWeb']]
                                     ])
                         }*/
-                    git url: 'https://x-token-auth:${env.FG_CATALOGO_BITBUCKET_TOKEN}@bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
+                    git url: 'https://x-token-auth:${FG_CATALOGO_BITBUCKET_TOKEN}@bitbucket.org/geosystems_ar/fgcatalogofront.git', branch: 'master'
                 }
             }
         }
