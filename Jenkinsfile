@@ -8,10 +8,13 @@ pipeline {
         //GITLAB_API_TOKEN = credentials('Bitbucker_user_pwd')
     }*/    
     stages {
-        stage('Checkout') {
+        stage('Print Vbles Entorno') {
             steps {
                 bat 'echo ${env.FG_CATALOGO_BITBUCKET_TOKEN}'
-                
+            }
+        }
+        stage('Checkout') {
+            steps {
                 dir('C:\\Code\\CatalogoWeb') {
                     /*withCredentials([string(credentialsId: 'Bitbucker_user_pwd', variable: 'GITLAB_API_TOKEN')]) {
                          checkout([$class: 'GitSCM',
