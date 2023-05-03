@@ -10,6 +10,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                bat 'echo ${env.FG_CATALOGO_BITBUCKET_TOKEN}'
+                
                 dir('C:\\Code\\CatalogoWeb') {
                     /*withCredentials([string(credentialsId: 'Bitbucker_user_pwd', variable: 'GITLAB_API_TOKEN')]) {
                          checkout([$class: 'GitSCM',
