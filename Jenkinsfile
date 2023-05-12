@@ -15,26 +15,30 @@ pipeline {
                 }
             }
         }
-        /*stage('Build') {
+        stage('Build') {
             steps {
-                dir('C:\\Code\\CatalogoWeb') {
+                dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
+                    // Instalar las dependencias de la aplicación utilizando npm
                     bat 'npm install'
-                    bat 'npm run build -- --configuration production'
+
+                    //bat 'npm run build -- --configuration production'
+                    // Realizar el build de la aplicación utilizando el comando npm run build:component
+                    bat 'npm run build:component'
                 }
             }
-        }*/     
-        stage('Transfer files to remote server') {
+        }    
+        /*stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     //sh 'ssh user@192.168.1.135 mkdir -p /urs/src/app/fibergis_fgapi/fibergis_catalogoweb'
                     sh 'scp C:/Code/FiberGIS_CatalogoWeb/Dockerfile geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/'
                     sh 'scp C:/Code/FiberGIS_CatalogoWeb/nginx.conf geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/'
-                    sh 'scp -r C:/Code/FiberGIS_CatalogoWeb/CatalogoWeb geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/'
-                    //bat 'robocopy C:/Code/FiberGIS_FGapi/fgapi geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/catalogoweb /xf *.* /s'
-                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoweb/catalogoweb && rm -rf .browserslistrc && rm -rf .editorconfig && rm -rf .git && rm -rf .gitignore && ls -la"'
+                    sh 'scp -r C:/Code/FiberGIS_CatalogoWeb/CatalogoWeb/dist geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/'
+                    
+                    //sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoweb/catalogoweb && rm -rf .browserslistrc && rm -rf .editorconfig && rm -rf .git && rm -rf .gitignore && ls -la"'
                 }
             }
-        }/*        
+        }        
         stage('Build Docker image') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {

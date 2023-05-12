@@ -4,8 +4,8 @@ FROM nginx
 # Copiamos el archivo de configuración nginx.conf al contenedor
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copiamos la aplicación web Angular desde la carpeta /dist/catalogoweb al directorio de trabajo del contenedor (/usr/share/nginx/html)
-COPY /dist/catalogoweb /usr/share/nginx/html
+# Copiamos la aplicación web Angular desde la carpeta ./dist al directorio de trabajo del contenedor (/usr/share/nginx/html)
+COPY /dist /usr/share/nginx/html
 
 # Exponemos el puerto 81 para acceder a la aplicación web desde afuera del contenedor
 EXPOSE 81
