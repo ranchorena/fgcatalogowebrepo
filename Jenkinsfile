@@ -18,8 +18,9 @@ pipeline {
         stage('Build') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
-                    // Cambiar la propiedad baseHref en el archivo angular.json
-                    bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"",\\"baseHref\\": \\"\\"\" | Set-Content -Path angular.json"'
+                    // Cambiar la propiedad baseHref en el archivo angular.json                   
+                    bat "powershell -Command '(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Set-Content -Path angular.json'"
+
 
                     // Instalar las dependencias de la aplicación utilizando npm
                     bat 'npm install'
