@@ -21,7 +21,8 @@ pipeline {
                     // Cambiar la propiedad baseHref en el archivo angular.json                   
                     //bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Set-Content -Path angular.json"'
                     //bat 'powershell -Command "Import-Module Microsoft.PowerShell.Management; (Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Set-Content -Path angular.json"'
-                    bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Out-File -FilePath angular.json -Encoding utf8"'
+                    //bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Out-File -FilePath angular.json -Encoding utf8"'
+                    powershell -Command "(Get-Content -Path angular.json -Raw) -replace \"baseHref\": \"/catalogoweb/\"", \"baseHref\": \"\" | Set-Content -Path angular.json"
 
                     // Instalar las dependencias de la aplicación utilizando npm
                     bat 'npm install'
