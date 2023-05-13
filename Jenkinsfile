@@ -50,27 +50,34 @@ pipeline {
                 }
             }
         }      
-        /*stage('Run Docker container') {
+        stage('Run Docker container') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
-                    // sh 'ssh geouser@192.168.1.135 "docker run -p 6062:6062 --name fgapi fgapi:qa"'
-                    sh 'ssh geouser@192.168.1.135 "if docker ps -a | grep fgapi >/dev/null 2>&1; then docker stop fgapi && docker rm fgapi; fi && docker run -d -p 6062:6062 --name fgapi fgapi:qa"'
+                    // Verifica si el contenedor "fgapi" existe utilizando el comando "docker ps -a" y filtrando los resultados con "grep". 
+                    // Si el contenedor existe, detiene y elimina el contenedor utilizando los comandos "docker stop" y "docker rm". 
+                    // Luego, ejecuta un nuevo contenedor "fgapi:qa" utilizando el comando "docker run" con los parámetros "-d" para ejecutar en segundo plano y "-p" para mapear el puerto 6062 del host al puerto 6062 del contenedor.                    
+                    sh '''
+                        ssh geouser@192.168.1.135 "
+                            if docker ps -a | grep fgapi >/dev/null 2>&1; then docker stop fgapi && 
+                            docker rm fgapi; fi && 
+                            docker run -d -p 6062:6062 --name fgapi fgapi:qa
+                        "
+                    '''
                 }
             }
         } 
-        */   
     } 
-    /*post {
+    post {
         success {
-            emailext body: "El pipeline de FiberGIS_CatalogoWeb se ha completado con exito.\n\nUltimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\n${env.LAST_COMMIT_HASH}",  
+            emailext body: "El pipeline de FiberGIS_CatalogoWeb se ha completado con exito.\n\nUltimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\n${env.LAST_COMMIT_HASH}.\n\nhttp://192.168.1.135:6062",  
                      subject: 'FiberGIS_CatalogoWeb - Pipeline Exitoso',
-                     to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
+                     to: 'Raul.Anchorena@geosystems.com.ar'
         }
         failure {
             emailext body: 'El pipeline de FiberGIS_CatalogoWeb ha fallado.', 
                      subject: 'FiberGIS_CatalogoWeb - Pipeline Fallido - ERROR',
-                     to: 'Raul.Anchorena@geosystems.com.ar;Agustin.David@geosystems.com.ar'
+                     to: 'Raul.Anchorena@geosystems.com.ar'
         }
-    }*/
+    }
 }
 
