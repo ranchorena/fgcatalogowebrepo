@@ -18,25 +18,16 @@ pipeline {
         stage('Build') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
-                    // Cambiar la propiedad baseHref en el archivo angular.json                   
-                    //bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Set-Content -Path angular.json"'
-                    //bat 'powershell -Command "Import-Module Microsoft.PowerShell.Management; (Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Set-Content -Path angular.json"'
-                    //bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\" | Out-File -FilePath angular.json -Encoding utf8"'
-                    //bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \"baseHref\": \"/catalogoweb/\", \"baseHref\": \"\" | Out-File -FilePath angular.json -Encoding utf8"'
-                    //bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace \\"baseHref\\": \\"/catalogoweb/\\"", \\"baseHref\\": \\"\\"   | cmd.exe /c \"set /p =\" > angular.json"'
-                    //bat 'powershell -Command "(Get-Content -Path angular.json -Raw) -replace "\"baseHref\": \"/catalogoweb/\",\"baseHref\": \"\"" | Set-Content -Path angular.json"'
-
-
                     // Instalar las dependencias de la aplicación utilizando npm
                     bat 'npm install'
-
+                    // Realizar el build de la aplicación sobrescribiendo el baseHref del angular.json
                     bat 'npm run build -- --configuration production --base-href=""'
                     // Realizar el build de la aplicación utilizando el comando npm run build:component
                     //bat 'npm run build:component'
                 }
             }
         }    
-        /*stage('Transfer files to remote server') {
+        stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     //sh 'ssh user@192.168.1.135 mkdir -p /urs/src/app/fibergis_fgapi/fibergis_catalogoweb'
@@ -48,7 +39,7 @@ pipeline {
                 }
             }
         }        
-        stage('Build Docker image') {
+        /*stage('Build Docker image') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_fgapi && docker build -t fgapi:qa --no-cache /usr/src/app/fibergis_fgapi"'             
