@@ -58,9 +58,9 @@ pipeline {
                     // Luego, ejecuta un nuevo contenedor "fgapi:qa" utilizando el comando "docker run" con los parámetros "-d" para ejecutar en segundo plano y "-p" para mapear el puerto 6062 del host al puerto 6062 del contenedor.                    
                     sh '''
                         ssh geouser@192.168.1.135 "
-                            if docker ps -a | grep fgapi >/dev/null 2>&1; then docker stop fgapi && 
-                            docker rm fgapi; fi && 
-                            docker run -d -p 6062:6062 --name fgapi fgapi:qa
+                            if docker ps -a | grep fgcatalogofront >/dev/null 2>&1; then docker stop fgcatalogofront && 
+                            docker rm fgcatalogofront; fi && 
+                            docker run -d -p 81:81 --name fgcatalogofront fgcatalogofront:qa
                         "
                     '''
                 }
@@ -69,7 +69,7 @@ pipeline {
     } 
     post {
         success {
-            emailext body: "El pipeline de FiberGIS_CatalogoWeb se ha completado con exito.\n\nUltimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\n${env.LAST_COMMIT_HASH}.\n\nhttp://192.168.1.135:6062",  
+            emailext body: "El pipeline de FiberGIS_CatalogoWeb se ha completado con exito.\n\nUltimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\nCommit Id: ${env.LAST_COMMIT_HASH}.\n\nCatalogoWeb\n\nhttp://192.168.1.135:81",  
                      subject: 'FiberGIS_CatalogoWeb - Pipeline Exitoso',
                      to: 'Raul.Anchorena@geosystems.com.ar'
         }
