@@ -69,7 +69,7 @@ pipeline {
     } 
     post {
         success {
-            emailext body: "El pipeline de FiberGIS_CatalogoWeb se ha completado con exito.\n\nUltimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\nCommit Id: ${env.LAST_COMMIT_HASH}.\n\nCatalogoWeb\n\nhttp://192.168.1.135:81",  
+            emailext body: "El pipeline de FiberGIS_CatalogoWeb se ha completado con exito.\n\nUltimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\nCommit Id: ${env.LAST_COMMIT_HASH}.\n\nCatalogoWeb\nhttp://192.168.1.135:81",  
                      subject: 'FiberGIS_CatalogoWeb - Pipeline Exitoso',
                      to: 'Raul.Anchorena@geosystems.com.ar'
         }
