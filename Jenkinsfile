@@ -40,7 +40,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
-                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoweb && docker build -t fgcatalogofront:qa --no-cache /usr/src/app/fibergis_catalogoweb"'             
+                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoweb && docker image rm fgcatalogofront:qa && docker build -t fgcatalogofront:qa --no-cache /usr/src/app/fibergis_catalogoweb"'             
                 }
             }
         }      
