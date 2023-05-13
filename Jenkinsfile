@@ -34,19 +34,17 @@ pipeline {
                     sh 'scp C:/Code/FiberGIS_CatalogoWeb/Dockerfile geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/'
                     sh 'scp C:/Code/FiberGIS_CatalogoWeb/nginx.conf geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/'
                     sh 'scp -r C:/Code/FiberGIS_CatalogoWeb/CatalogoWeb/dist geouser@192.168.1.135:/usr/src/app/fibergis_catalogoweb/'
-                    
-                    //sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoweb/catalogoweb && rm -rf .browserslistrc && rm -rf .editorconfig && rm -rf .git && rm -rf .gitignore && ls -la"'
                 }
             }
         }        
-        /*stage('Build Docker image') {
+        stage('Build Docker image') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
-                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_fgapi && docker build -t fgapi:qa --no-cache /usr/src/app/fibergis_fgapi"'             
+                    sh 'ssh geouser@192.168.1.135 "cd /usr/src/app/fibergis_catalogoweb && docker build -t fgcatalogofront:qa --no-cache /usr/src/app/fibergis_catalogoweb"'             
                 }
             }
         }      
-        stage('Run Docker container') {
+        /*stage('Run Docker container') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
                     // sh 'ssh geouser@192.168.1.135 "docker run -p 6062:6062 --name fgapi fgapi:qa"'
