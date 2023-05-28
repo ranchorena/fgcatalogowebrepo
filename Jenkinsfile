@@ -60,7 +60,7 @@ pipeline {
                     // Luego, ejecuta un nuevo contenedor "fgapi:qa" utilizando el comando "docker run" con los parámetros "-d" para ejecutar en segundo plano y "-p" para mapear el puerto 6062 del host al puerto 6062 del contenedor.                    
                     sh '''
                         ssh geouser@192.168.1.135 "
-                            docker run -d -p 81:81 --name fgcatalogofront fgcatalogofront:qa
+                            docker run -d --restart=always -p 81:81 --name fgcatalogofront fgcatalogofront:qa
                         "
                     '''
                 }
