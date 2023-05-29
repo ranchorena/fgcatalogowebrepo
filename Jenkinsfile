@@ -55,9 +55,6 @@ pipeline {
         stage('Run Docker container') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
-                    // Verifica si el contenedor "fgapi" existe utilizando el comando "docker ps -a" y filtrando los resultados con "grep". 
-                    // Si el contenedor existe, detiene y elimina el contenedor utilizando los comandos "docker stop" y "docker rm". 
-                    // Luego, ejecuta un nuevo contenedor "fgapi:qa" utilizando el comando "docker run" con los parámetros "-d" para ejecutar en segundo plano y "-p" para mapear el puerto 6062 del host al puerto 6062 del contenedor.                    
                     sh '''
                         ssh geouser@192.168.1.135 "
                             docker run -d --restart=always -p 81:81 --name fgcatalogofront fgcatalogofront:qa
