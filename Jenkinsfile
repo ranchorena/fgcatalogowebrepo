@@ -2,7 +2,7 @@ pipeline {
     agent any
   
     stages {
-        /*stage('Checkout') {
+        stage('Checkout') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
                     git branch: 'Catalogo2', url: 'https://x-token-auth:ATCTT3xFfGN06AZe4MFMPf8fN8H4LC0_yZb8vtED9eewtRsKS4x1rsitvD1nlzCTNdPXpkufArUfYZPSspjZyauF4jKGM1EqR4L_AmmH9ObmWAJzSzJR7ocVuak2SqxF7AYawIQGnnjBWjJnduwE1o4uHUerliAJYEBSiDP-tJpLWYu8vLRmWvQ=558B95DF@bitbucket.org/geosystems_ar/fgcatalogofront.git'
@@ -14,7 +14,7 @@ pipeline {
                     }                         
                 }
             }
-        }*/
+        }
         stage('Build') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
@@ -27,7 +27,20 @@ pipeline {
                 }
             }
         }    
-      
+        stage('SonarQube Analysis') {
+            steps {
+                dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
+                    withSonarQubeEnv('sonarqubeserver') {
+                        script {
+                            def scannerHome = tool 'sonarscanner'
+                            withSonarQubeEnv(credentialsId: 'sonarqube') {
+                                bat "${scannerHome}\\bin\\sonar-scanner.bat -Dsonar.projectKey=FiberGIS_CatalogoWeb -Dsonar.sources=src -Dsonar.exclusions=**/node_modules/**"
+                            }
+                        }
+                    }
+                }
+            }
+        }       
         stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
