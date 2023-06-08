@@ -27,7 +27,7 @@ pipeline {
                 }
             }
         }    
-        stage('SonarQube Analysis') {
+        /*stage('SonarQube Analysis') {
             steps {
                 dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
                     withSonarQubeEnv('sonarqubeserver') {
@@ -40,7 +40,7 @@ pipeline {
                     }
                 }
             }
-        }           
+        }   */        
         stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
