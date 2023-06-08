@@ -27,20 +27,7 @@ pipeline {
                 }
             }
         }    
-        /*stage('SonarQube Analysis') {
-            steps {
-                dir('C:\\Code\\FiberGIS_CatalogoWeb\\CatalogoWeb') {
-                    withSonarQubeEnv('sonarqubeserver') {
-                        script {
-                            def scannerHome = tool 'sonarscanner'
-                            withSonarQubeEnv(credentialsId: 'sonarqube') {
-                                bat "${scannerHome}\\bin\\sonar-scanner.bat -Dsonar.projectKey=FiberGIS_CatalogoWeb -Dsonar.sources=src -Dsonar.exclusions=**/node_modules/**"
-                            }
-                        }
-                    }
-                }
-            }
-        }   */        
+      
         stage('Transfer files to remote server') {
             steps {
                 sshagent(['SSH_Server_135_geouser']) {
