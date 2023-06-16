@@ -9,6 +9,7 @@ COPY /dist /usr/share/nginx/html
 
 # Exponemos el puerto 81 para acceder a la aplicación web desde afuera del contenedor
 EXPOSE 81
+EXPOSE 80/tcp
 
 # Eliminar cualquier archivo o enlace simbólico existente en el directorio /var/log/nginx
 RUN rm -f /var/log/nginx/access.log && \
