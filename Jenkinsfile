@@ -84,7 +84,7 @@ pipeline {
                            "Ultimo mensaje de commit: ${env.LAST_COMMIT_MESSAGE}\n\n" +
                            "Commit Id: ${env.LAST_COMMIT_HASH}.\n\n" +
                            "CatalogoWeb\n" +
-                           "http://192.168.1.135:81\n\n" +
+                           "https://web.fibergis.com.ar/dev/Catalogo/\n\n" +
                            "Job Name: ${env.JOB_NAME}\n" +
                            "Build: ${env.BUILD_NUMBER}\n" +
                            "Console output: ${env.BUILD_URL}",  
